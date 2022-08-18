@@ -23,6 +23,12 @@ public class Task {
     public Task() {
     }
 
+    public Task(@NotBlank(message = "titulo é obrigatório") String title, String description, @Min(1) int score) {
+        this.title = title;
+        this.description = description;
+        this.score = score;
+    }
+
     public Task(Long id, String title, String description, int score, int status) {
         this.id = id;
         this.title = title;
