@@ -1,0 +1,22 @@
+# Listar Todas
+GET http://localhost:8080/api/task
+#Authorization: Basic user 711e36f3-3952-4424-b7aa-97043923193f
+
+###
+
+# Apagar
+DELETE http://localhost:8080/api/task/1
+
+###
+
+# Cadastrar
+POST http://localhost:8080/api/task
+Content-Type: application/json
+Authorization: Basic joao@fiap.com.br 123
+
+{
+      "title": "Modelar BD",
+      "description": "modelar tabelas do banco",
+      "score": 150
+}
+###

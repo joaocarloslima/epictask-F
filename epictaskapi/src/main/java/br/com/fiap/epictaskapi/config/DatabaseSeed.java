@@ -5,20 +5,37 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import br.com.fiap.epictaskapi.model.Task;
+import br.com.fiap.epictaskapi.model.User;
 import br.com.fiap.epictaskapi.repository.TaskRepository;
+import br.com.fiap.epictaskapi.repository.UserRepository;
 
 @Configuration
 public class DatabaseSeed implements CommandLineRunner {
 
     @Autowired
-    TaskRepository repository;
+    TaskRepository taskRepository;
+
+    @Autowired
+    UserRepository userRepository;
+
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
     @Override
     public void run(String... args) throws Exception {
 
-        repository.saveAll(List.of(
+        userRepository.save(
+            new User()
+                .name("João")
+                .email("joao@fiap.com.br")
+                .password(passwordEncoder.encode("123")) 
+        );
+
+        taskRepository.saveAll(List.of(
             new Task("Modelar BD", "modelar tabelas do banco", 150),
             new Task("Prototipo", "prototipar as telas", 20),
             new Task("Login", "prototipar as telas", 10),
