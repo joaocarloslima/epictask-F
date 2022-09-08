@@ -3,16 +3,14 @@ package br.com.fiap.epictaskapi.config.security;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfiguration {
 
     @Bean
@@ -23,7 +21,8 @@ public class SecurityConfiguration {
             .and()
             .authorizeHttpRequests()
                 .antMatchers(HttpMethod.GET, "/api/task/**").permitAll()
-                .antMatchers(HttpMethod.POST, "/api/task").hasRole("USER")
+                .antMatchers(HttpMethod.POST, "/api/task").authenticated()
+                .antMatchers(HttpMethod.DELETE, "/api/task").hasRole("ADMIN")
                 .anyRequest().denyAll()
             .and()
                 .csrf().disable()
