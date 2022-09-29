@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{~/css/style.css}">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Epic Task</h1>
+
+    <nav>
+        <ul>
+            <li><a href="#">pendentes</a></li>
+            <li><a href="#">concluídas</a></li>
+            <li><a href="#">usuários</a></li>
+        </ul>
+    </nav>
+
+    <div class="toolbar">
+        <a class="button primary" href="/task/new">cadastrar tarefa</a>
+    </div>
+
+    <main class="cards">
+        <div class="card" th:each="task : ${tasks}">
+            <h2 th:text="${task.title}"></h2>
+            <span th:text="${task.status + '%'}"></span>
+            <span th:text="${task.score + 'pts'}"></span>
+        </div>
+    </main>
+
+   
+</body>
+</html>
