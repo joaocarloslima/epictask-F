@@ -4,14 +4,51 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" th:href="@{~/css/style.css}">
+    <link rel="stylesheet" th:href="@{~/css/range.css}">
+    <title>Epic Task</title>
 </head>
 <body>
-    <form action="/task" method="POST">
-        <input placeholder="titulo" type="text" name="title" id="title">
-        <textarea placeholder="descrição" name="description" id="description" cols="30" rows="10"></textarea>
-        <input type="range" name="score" id="score">
-        <input class="button primary" type="submit" value="cadastrar">
-    </form>
-</body>
+    <h1>Epic Task</h1>
+    
+    <main class="cards">
+        <div class="card lg">
+            <h2>Cadastrar Tarefa</h2>
+            <form class="vertical-form" action="/task" method="POST">
+                <label class="hide" for="title">título</label>
+                <input 
+                    placeholder="título" 
+                    type="text" 
+                    id="title" 
+                    name="title"
+                    
+                >
+                
+                
+                <label class="hide" for="description">descrição</label>
+                <textarea 
+                    placeholder="descrição da tarefa" 
+                    name="description" 
+                    id="description"
+                ></textarea>
+
+                <label id="labelscore" for="score">pontos</label>
+                <input 
+                    type="range" 
+                    min="0" 
+                    max="100" 
+                    step="5" 
+                    name="score" 
+                    id="score"
+                >
+                
+                <div class="buttons">
+                    <a href="/task" class="button cancel">cancelar</a>
+                    <input class="button" type="submit" value="cadastrar">
+                </div>
+            </form>
+        </div>
+    </main>
+    </body>
+    <script th:src="@{~/js/script.js}"></script>
 </html>

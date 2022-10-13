@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600;700&display=swap');
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 
 :root{
     --bg: #272B30;
@@ -7,62 +8,210 @@
     --text-color: #FFF;
 }
 
-* {
+*{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    outline: none;
 }
+
+::-webkit-scrollbar-thumb { background-color: #F066;}
+::-webkit-scrollbar { width: .5rem;}
+::-webkit-scrollbar-track {background-color: var(--bg);}
 
 body{
     background-color: var(--bg);
-    color: var(--text-color);
     font-family: 'Poppins', sans-serif;
+    color: var(--text-color);
+    font-size: 10px;
 }
 
-a {
+h1{
+    font-size: 2.4rem;
+    margin: 1rem;
+}
+
+h2{
+    font-size: 1.2rem;
+}
+
+a{
     color: var(--text-color);
     text-decoration: none;
 }
 
-nav li {
-    list-style: none;
-}
-
-nav ul {
+.toolbar{
     display: flex;
+    justify-content: flex-end;
+    padding-right: 2rem;
 }
 
-nav ul li{
-    margin: .8rem;  
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.buttons .button {
+    flex-grow: 1;
+    text-align: center;
 }
 
 .button {
-    padding: .5rem 1rem;
-    background-color: var(--bg);
+    background: var(--primary);
+    box-shadow: 0px 0px 6px var(--primary);
     border-radius: 5px;
+    color: var(--bg);
+    font-size: 1rem;
+    padding: .5rem 1rem;
+    border: none;
+    cursor: pointer;
 }
 
-.button.primary{
-    background-color: var(--primary);
-    color: var(--bg);
+.button.cancel {
+    background: var(--bg);
+    box-shadow: none;
+    color: var(--text-color);
 }
 
 .cards{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: center;
 }
 
 .card{
     display: flex;
-    flex-direction: column;
     justify-content: space-around;
+    flex-direction: column;
     align-items: center;
-    width: 200px;
-    height: 250px;
-    margin: 1rem;
+    width: 270px;
+    height: 300px;
+    margin: 2rem;
     background: var(--bg-grad);
     border: 1px solid #333333;
     box-shadow: 20px 20px 40px rgba(0, 0, 0, 0.5);
     border-radius: 10px;
+    transition: all .2s ease-in-out;
+}
+
+.card.animated{
+    cursor: pointer;
+}
+
+.card.animated:hover{
+    box-shadow: 30px 30px 40px rgba(0, 0, 0, 0.5);
+    transform:translateY(-6px) ;
+}
+
+.card.lg{
+    width: 370px;
+    height: 400px;
+}
+
+.status {
+    position: relative;
+
+}
+
+.status svg{
+    position: relative;
+    width: 150px;
+    height: 150px;
+}
+
+.status circle {
+    width: 100%;
+    height: 100%;
+    fill: none;
+    stroke: #19191966;
+    stroke-width: 10px;
+    stroke-linecap: round;
+    transform: translate(5px, 5px);
+}
+
+.status circle:nth-child(2) {
+    stroke-dasharray: 440;
+    stroke-dashoffset: calc(440 - (440 * 50) / 100 );
+    stroke: var(--primary);
+    filter: drop-shadow(0px 0px 3px var(--primary));
+}
+
+.status .number{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 2rem;
+}
+.status .number h2{
+    font-size: 2rem;
+    filter: opacity(.5);
+}
+
+.score{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.score span {
+    font-size: 1rem;
+    margin-left: .5rem;
+}
+
+.score span:nth-child(1) {
+    color: var(--primary);
+}
+
+.vertical-form{
+    display: flex;
+    flex-direction: column;
+}
+
+.hide {
+    display: none;
+}
+
+input[type=text], textarea {
+    background: var(--bg);
+    border: 1px solid #545D68;
+    box-shadow: inset -4px -4px 4px rgba(103, 103, 103, 0.25), inset 3px 3px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    padding: .8rem;
+    color: var(--text-color);
+    margin-top: 1rem;
+}
+
+textarea{
+	resize: vertical;
+	height: 5rem;
+	width: 20rem;
+    font-family: 'Poppins', sans-serif;
+    max-height: 12rem;
+}
+
+.invalid{
+    border: solid 1px var(--primary) !important;
+}
+
+#labelscore{
+    margin: 1rem 0;
+    font-size: 1rem;
+}
+
+.alert {
+    text-align: center;
+    background-color: var(--bg-grad);
+    padding: .5rem 2rem;
+    max-width: 350px;
+    border-radius: 5px;
+}
+
+.alert.success{
+    background-color: #00ff6684;
 }
