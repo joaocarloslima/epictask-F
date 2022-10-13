@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head th:replace="_template :: head"></head>
+<body>
+    <header th:replace="_template :: header"></header>
+    <nav th:replace="_template :: menu('usuarios')"></nav>
+
+    <div class="toolbar">
+        <a class="button" href="/user/new" sec:authorize-url="POST /user" >cadastrar usuário</a>
+    </div>
+
+    <div class="alert success" th:if="${message != null}">
+        <span th:text="${message}"></span>
+    </div>
+
+    <main class="cards">
+       <h2>Lista de usuários</h2>
+    </main>
+
+</body>
+</html>

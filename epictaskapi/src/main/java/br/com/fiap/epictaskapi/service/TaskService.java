@@ -1,6 +1,5 @@
 package br.com.fiap.epictaskapi.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,6 +25,14 @@ public class TaskService {
         return repository.findAll();
     }
 
+    public  List<Task> listPending() {
+        return repository.findPending();
+    }
+
+    public List<Task> listDone() {
+        return repository.findDone();
+    }
+
     public void save(Task task) {
         repository.save(task);
     }
@@ -37,5 +44,9 @@ public class TaskService {
     public void deleteById(Long id) {
         repository.deleteById(id);
     }
+
+
+
+
 
 }

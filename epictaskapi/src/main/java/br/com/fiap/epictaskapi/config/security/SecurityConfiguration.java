@@ -32,15 +32,24 @@ public class SecurityConfiguration {
                 .antMatchers(HttpMethod.DELETE, "/api/user/**").authenticated()
                 .antMatchers(HttpMethod.PUT, "/api/user/**").authenticated()
                 
+                // Web
+                .antMatchers(HttpMethod.GET, "/task").authenticated()
+                .antMatchers(HttpMethod.POST, "/task").hasRole("ADMIN")
+
+                
                 // Infra
                 .antMatchers("/h2-console/**").permitAll()
+                
                
                 .anyRequest().permitAll()
             .and()
                 .csrf().disable()
                 .headers().frameOptions().disable()
             .and()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                //.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+            //.and()
+                .formLogin()
+                //.loginPage("/minhapaginadelogin")
         ;
 
        return http.build();

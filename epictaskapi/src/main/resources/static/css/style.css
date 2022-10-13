@@ -199,9 +199,28 @@ textarea{
     border: solid 1px var(--primary) !important;
 }
 
+.header{
+    display: flex;
+    justify-content: space-between;
+}
+
 #labelscore{
     margin: 1rem 0;
     font-size: 1rem;
+}
+
+nav ul {
+    display: flex;
+}
+
+nav li{
+    padding: 1rem;
+    font-size: 1rem;
+    list-style: none;
+}
+
+nav li.active{
+    border-bottom: 1px solid var(--primary);
 }
 
 .alert {

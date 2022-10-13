@@ -1,17 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" th:href="@{~/css/style.css}">
-    <title>Epic Task</title>
-</head>
+<html lang="pt-BR">
+<head th:replace="_template :: head"></head>
 <body>
-    <h1>Epic Task</h1>
+<header th:replace="_template :: header"></header>
+<nav th:replace="_template :: menu('pendentes')"></nav>
+
 
     <div class="toolbar">
-        <a class="button" href="/task/new">cadastrar tarefa</a>
+        <a class="button" href="/task/new" sec:authorize-url="POST /task" >cadastrar tarefa</a>
     </div>
 
     <div class="alert success" th:if="${message != null}">
@@ -33,6 +29,14 @@
             <div class="score">
                 <span class="material-icons">star</span>
                 <span th:text="${task.score + 'pts'}"></span>
+            </div>
+            <div class="actions">
+                <a th:href="${'/task/delete/' + task.id}" sec:authorize="hasRole('ADMIN')">
+                    <span class="material-icons">delete</span>
+                </a>
+                <a th:href="${'/task/' + task.id}">
+                    <span class="material-icons">edit</span>
+                </a>                
             </div>
             
         </div>
